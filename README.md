@@ -1,3 +1,4 @@
+![dPanther Logo](https://dpanther.fiu.edu/dpanther/dpmain/Images/branding_dpanther_lg.png)
 
 # dPanther Chatbot
 
