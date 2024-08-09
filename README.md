@@ -1,5 +1,5 @@
 
-# ![dPanther Logo](https://dpanther.fiu.edu/dpanther/dpmain/Images/branding_dpanther_lg.png) dPanther Chatbot
+# <img src="https://dpanther.fiu.edu/dpanther/dpmain/Images/branding_dpanther_lg.png" alt="dPanther Logo" width="200"/> dPanther Chatbot
 
 This project is an open-source initiative aimed at leveraging Generative AI and Large Language Models (LLM) to embed digital library collections into a vector database and build a chatbot interface for intuitive and efficient searching. The project is licensed under the GNU General Public License v3 (GPL-3.0).
 
