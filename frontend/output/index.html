@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css" integrity="sha512-m02AefDUa/XnBsl5nrzOvvc+mVLZbQ/a5FLQVC9k5JnXVTmWEteLnnTD69A9To8BGVMpJyTPF0arrB7KZchFBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" href="output.css">
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+
+</head>
+<body>
+	<div class="container xl:max-w-7xl mx-auto">
+		
+		<header class="logo m-6">
+			<img src="./img/logo_fiu-library.png" alt="FIU Libraries Logo" />
+		</header>
+		
+		<nav class="nav relative z-1 px-8 py-0 bg-gradient-to-b from-blues-100 to-blues-300 text-whites-100 drop-shadow-[0_4px_3px_rgba(0,0,0,0.35)]">
+			<div class="flex h-auto w-full items-center justify-normal gap-x-0 text-base">
+				<a href="#" class="nav-links">Home</a>
+				<a href="#" class="nav-links">Collections</a>
+				<a href="#" class="nav-links">Items</a>
+				<a href="#" class="nav-links active">Full-Text</a>
+				<a href="#" class="nav-links">Stats</a>
+				<a href="#" class="nav-links">About</a>
+				<a href="#" class="nav-links">Contact</a>
+			</div>
+		</nav>
+
+		<section class="content">
+<!-- start - AI Modal -->
+			<div id="staticModal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-[9999] hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+				<div class="relative w-full max-w-2xl max-h-full">
+					<!-- Modal content -->
+					<div class="relative rounded-lg shadow bg-gray-800">
+						<!-- Modal header -->
+						<div class="flex items-start justify-between p-4 border-b rounded-t border-gray-600">
+							<h3 class="text-xl font-semibold text-white">
+								<div class="relative flex items-center space-x-4">
+									<img src="https://images.emojiterra.com/google/noto-emoji/unicode-15/color/svg/1f916.svg" alt="" class="w-10 sm:w-14 h-10 sm:h-14">
+									<h2 class="pt-2">dPanther A.I. Search</h2>
+								</div>
+							</h3>
+							<button type="button" class="text-gray-400 bg-transparent rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center hover:bg-gray-600 hover:text-white" data-modal-hide="staticModal">
+								<svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+									<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+								</svg>
+								<span class="sr-only">Close modal</span>
+							</button>
+						</div>
+						<!-- Modal body -->
+						<div class="p-6 space-y-6">
+							<div id="messages" class="flex flex-col space-y-4 p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch max-h-[300px]">
+								<div class="chat-message">
+									<div class="flex items-end">
+										<div class="flex flex-col space-y-2 text-sm max-w-xs mx-2 order-2 items-start">
+											<div><span class="px-4 py-2 rounded-lg inline-block bg-gray-300 text-gray-600">Welcome to dPather A.I. Search</span></div>
+											<div><span class="px-4 py-2 rounded-lg inline-block bg-gray-300 text-gray-600">Have a question? Fire away.</span></div>
+										</div>
+										<img src="https://images.emojiterra.com/google/noto-emoji/unicode-15/color/svg/1f916.svg" alt="My profile" class="w-6 h-6 rounded-full order-1">
+									</div>
+								</div>
+								<!-- <div class="chat-message">
+									<div class="flex items-end justify-end">
+										<div class="flex flex-col space-y-2 text-sm max-w-xs mx-2 order-1 items-end">
+											<div><span class="px-4 py-2 rounded-lg inline-block rounded-br-none bg-blue-600 text-white ">yes, how old is the city of Miami?</span></div>
+										</div>
+										<img src="https://images.emojiterra.com/google/noto-emoji/unicode-15/color/svg/1f643.svg" alt="My profile" class="w-6 h-6 rounded-full order-2">
+									</div>
+								</div> -->
+							</div>
+						</div>
+						<!-- Modal footer -->
+						<div class="flex items-center p-6 space-x-2 border-t rounded-b border-gray-600">
+							<div class="w-full mb-2 sm:mb-0">
+								<div class="relative flex">
+									<input id="chatInput" type="text" placeholder="Begin a convo!" class="w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-2 bg-gray-200 rounded-lg py-3 border-none">
+									<div class="absolute right-0 items-center inset-y-0 hidden sm:flex">
+										<button id="chatButton" type="button" class="inline-flex items-center justify-center rounded-lg rounded-l-none px-4 py-3 transition duration-500 ease-in-out text-white bg-blue-500 hover:bg-blue-400 focus:outline-none">
+											<span class="font-bold">Send</span>
+											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-6 w-6 ml-2 transform rotate-90">
+											<path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path>
+											</svg>
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+<!-- end - AI Modal -->
+		</section>
+		
+		<section class="content mx-2 border-8 border-t-0 border-tans-100 text-blacks-100 bg-whites-100">
+			
+			<div class="w-full p-4 text-center sm:p-8 bg-gray-800">
+				<h5 class="mb-2 text-3xl font-bold text-white">dPanther Digital Repository</h5>
+				<p class="ml-36 mr-36 mb-2 text-base text-gray-400 sm:text-lg sm:ml-14 sm:mr-14">The Florida International University dPanther digital repository hosts unique digital collections of cultural, historical, scholarly, educational, and community resources.</p>
+			</div>
+
+			<div class="w-full p-4 text-center bg-white border-none sm:pt-8 sm:pb-4">
+				<div class="items-center justify-center space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
+					<a href="#" id="basicsearchbutton" class="w-[200px] xs:w-auto bg-blues-200 ring-4 outline-none ring-tans-100 text-white rounded-lg inline-flex items-center justify-center px-4 py-2.5 hover:ring-blues-300 transition-all">
+						<i class="fa-solid fa-magnifying-glass mr-4"></i>
+						<div class="text-left">
+							<div class="mb-1 text-xs">Perform a basic</div>
+							<div class="-mt-1 font-sans text-base font-semibold">Search</div>
+						</div>
+					</a>
+					<a href="#" class="w-[15px] text-sm text-tans-300 inline-flex items-center justify-center px-4 py-2.5">
+						OR
+					</a>
+					<a href="#" class="w-[200px] xs:w-auto bg-tans-100 hover:bg-blues-300 hover:text-white focus:ring-4 focus:outline-none focus:ring-gray-300 text-blues-300 rounded-lg inline-flex items-center justify-center px-4 py-2.5" data-modal-target="staticModal" data-modal-toggle="staticModal">
+						<i class="fa-solid fa-wand-sparkles mr-4"></i>
+						<div class="text-left">
+							<div class="mb-1 text-xs">Have a chat</div>
+							<div class="-mt-1 font-sans text-base font-semibold">A.I. Search</div>
+						</div>
+					</a>
+				</div>
+				<div class="w-full sm:px-20 mt-6 sm:mb-0">
+					<div class="relative flex">
+						<input id="basicSearchInput" type="text" placeholder="Search dPanther" class="w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-500 pl-2 bg-tans-100 py-3 border-4 border-tans-100 rounded-lg focus:border-blues-300 transition-all">
+						<div class="absolute right-0 items-center inset-y-0 flex">
+							<button id="searchButton" type="button" class="inline-flex items-center justify-center rounded-lg rounded-l-none px-4 py-3 transition duration-500 ease-in-out text-white bg-blues-300 hover:bg-gray-800 focus:outline-none">
+								<i class="fa-solid fa-magnifying-glass mr-2"></i>
+								<span class="font-bold">Search</span>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div id="results-placeholder" class="w-full pb-8 text-center">
+				<p class="ml-36 mr-36 mb-2 text-base text-gray-800 sm:text-sm sm:ml-14 sm:mr-14">Press &quot;enter&quot; from keyboard <u>or</u> type &quot;*&quot; and click search button to retrive all items</p>
+			</div>
+			<div id="search-results" class="new-content-div"></div>
+
+		</section>
+
+		<footer class="flex justify-between">
+			<!--div class="w-full">image</div-->
+			<div class="w-full text-center mt-2 text-xs text-gray-500">&copy; 2023 Florida International University</div>
+			<!--div class="w-full">
+				
+				<i class="fa-brands fa-facebook"></i>
+				<i class="fa-solid fa-xmark"></i>
+
+			</div-->
+		</footer>
+	</div>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js" integrity="sha512-uKQ39gEGiyUJl4AI6L+ekBdGKpGw4xJ55+xyJG7YFlJokPNYegn9KwQ3P8A7aFQAUtUsAQHep+d/lrGqrbPIDQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js" integrity="sha512-EdncaNdc3wlY0uZroWcNH9IbS6t3lI7a1RP8yU/DpCHAG7ecAw/7IATO0tFC/PBPKOodlRL5lONgb8EjzLTQ/Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="./output.js"></script>
+
+</body>
+</html>

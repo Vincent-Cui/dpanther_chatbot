@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    .highlight {
+        background-color: yellow; /* Highlight with yellow background */
+        font-weight: bold; /* Make it bold */
+    }
+    #response {
+        white-space: pre-wrap;      /* Allow content to wrap */
+        word-wrap: break-word;     /* Break long words if necessary */
+        overflow-wrap: break-word; /* Same as word-wrap for modern browsers */
+        width: 100%;               /* Take full width of its container */
+        max-width: 800px;          /* Optional: Set a max width if you want to constrain the content */
+    }
+    div.fadeMe {
+        opacity: 0.7;
+        background: hsl(var(--b1));
+        width: 100%;
+        height: 100%;
+        z-index: 100;
+        top: 0;
+        left: 0;
+        position: fixed;
+    }
+    .page-loader {
+        width: 100%;
+        height: 100vh;
+        position: absolute;
+        background: hsl(var(--b1));
+        z-index: 1000;
+    }
+    .page-loader .txt {
+        color: hsl(var(--in));
+        text-align: center;
+        top: 40%;
+        position: relative;
+        text-transform: uppercase;
+        letter-spacing: 0.3rem;
+        font-weight: bold;
+        line-height: 1.5;
+    }
+    .spinner {
+        position: relative;
+        top: 35%;
+        width: 80px;
+        height: 80px;
+        margin: 0 auto;
+        background-color: hsl(var(--a));
+        border-radius: 100%;
+        -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
+        animation: sk-scaleout 1.0s infinite ease-in-out;
+    }
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Demo</title>
+</head>
+<body>
+    <!-- LOADING -->
+    <div id="loading" class="fadeMe">
+        <div class="page-loader">
+            <div class="spinner"></div>
+            <div class="txt">Loading...<br>Please Wait</div>
+        </div>
+    </div>
+    <!-- LOADING END -->
+    <h2>Query Interface</h2>
+    <label for="qtype">Choose a query type:</label>
+    <select id="qtype">
+        <option value="0">SS Query</option>
+        <option value="1">Chat Query</option>
+    </select>
+    <br>
+    <label for="query">Enter your query:</label>
+    <textarea id="query" rows="4" cols="50"></textarea>
+    <br>
+    <button onclick="sendQuery()">Submit</button>
+    <h3>Response:</h3>
+    <pre id="response"></pre>
+
+    <!-- Include Axios from a CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="demo.js"></script>
+</body>
+</html>

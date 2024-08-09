@@ -1,0 +1,32 @@
+https://tailwindcss.com/docs/installation
+
+1
+npm install -D tailwindcss
+npx tailwindcss init
+
+2
+Add the paths to all of your template files in your tailwind.config.js file:
+  content: ["./output/*.{html,js}"],
+
+3
+Add the @tailwind directives for each of Tailwind’s layers to your main CSS file:
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+4
+To start the Tailwind CLI build process, add the following line to your package.json file below within the 'scripts' object:
+"dev": "tailwindcss -i ./src/input.css -o ./output/output.css --watch"
+see below for full example:
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"dev": "tailwindcss -i ./src/input.css -o ./output/output.css --watch"
+	},
+
+5
+Add your compiled CSS file to the <head> and start using Tailwind’s utility classes to style your content:
+  <link href="./output.css" rel="stylesheet">
+
+6
+Within the project's folder in Terminal run the following to build the project: 
+npm run dev

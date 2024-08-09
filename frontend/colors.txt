@@ -1,0 +1,21 @@
+(from light to dark)
+
+dark blues: 
+	#2b4e78 - nav top gradient
+	#274973 - buttons
+	#21446c - nav bottom gradient
+
+golds:
+	#c2930a
+
+tans:
+	#ebe8e4 - site border
+	#e2dcd2 - site bg
+	#d8d3c9
+
+whites:
+	#fdfdfc - content bg
+
+blacks:
+	#212121 - text
+
